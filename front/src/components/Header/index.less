@@ -1,0 +1,71 @@
+@import './../../style/default.less';
+.header{
+    background-color: @colorM;
+    .header-top{
+        height: 60px;
+        line-height: 60px;
+        padding: 0 20px;
+        text-align: right;
+        .logo{
+            line-height: 60px;
+            text-align: left;
+            font-size: 18PX;
+            img{
+                height: 40px;
+                vertical-align: middle;
+            }
+            span{
+                margin-left: 5px;
+            }
+        }
+        a{
+            margin-left: 20px;
+            color: @colorM;
+        }
+    }
+    .breadcrumb{
+        height: 40px;
+        line-height: 40px;
+        padding: 0 20px;
+        border-top: 1px solid #f9c700; 
+    }
+    .breadcrumb-title{
+        font-size: @fontC;
+        text-align: center;
+        position: relative;
+        &::after{
+            position: absolute;
+            content: '';
+            left: 92px;
+            top: 39px;
+            border-top: 15px solid white;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+        }
+    }
+    .weather{
+        text-align: right;
+        .date{
+            margin-right: 20px;
+            vertical-align: middle; 
+        }
+        .weather-img{
+            display: inline-block;
+            img{
+                height: 15px;
+            }
+        }
+        .weather-detail{
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+    }
+}
+
+// common 页面简单头
+.simple-page{
+    .header-top{
+      background:#1890ff;
+      color:@colorM;
+    }
+  }

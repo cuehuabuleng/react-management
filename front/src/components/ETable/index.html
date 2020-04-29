@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+ <style type="text/css">
+  #box {
+    width: 300px;
+    height: 600px;
+    background: black;
+    transition: scrollTop 1s;
+    overflow: auto;
+    color: #fff;
+    position: relative;
+  }
+  .title {
+   padding-left: 10px;
+   font-size: 20px;
+   height: 30px;
+   line-height: 30px;
+   border-bottom: 1px solid #fff;
+  }
+  .menu {
+   padding-left: 30px;
+   height: 50px;
+   line-height: 50px;
+   border-bottom: 1px dashed #fff;
+  } 
+  .menu_list {
+    position: fixed;
+      z-index: 2;
+      height: 500px;
+      width: 20px;
+      top: 50px;
+      margin-left: 250px;
+      background: #ccc;
+  }
+  .menu_list_div {
+   color: black;
+   width: 20px;
+   height: 20px;
+   text-align: center;
+   cursor: pointer;
+  }
+ </style>
+ 
+</head>
+<body>
+ <div id="box">
+ </div>
+ <script type="text/javascript">
+  const menu_ = 'abcdefghijklmnop'.split('');
+  const t = [ {child: [1,2,3], name: 'a', top: null}, 
+     {child: [1,2], name: 'b', top: null},
+     {child: [], name: 'c', top: null},
+     {child: [1], name: 'd', top: null},
+     {child: [1,2,3], name: 'e', top: null}, 
+     {child: [1,2], name: 'f', top: null},
+     {child: [], name: 'g', top: null},
+     {child: [1], name: 'h', top: null},
+     {child: [1,2,3], name: 'i', top: null}, 
+     {child: [1,2], name: 'j', top: null},
+     {child: [], name: 'k', top: null},
+     {child: [1], name: 'l', top: null},
+     {child: [1,2,3], name: 'm', top: null}, 
+     {child: [1,2], name: 'n', top: null},
+     {child: [], name: 'o', top: null},
+     {child: [1], name: 'p', top: null}
+
+       ];
+
+  const menuHeight = 50;
+  const titleHeight = 20;
+  t_ = t.map((d, i) => {
+   if(i && t[i - 1].child.length)   {
+    d.top = t[i - 1].top + menuHeight * t[i - 1].child.length + titleHeight;
+   }else { 
+    d.top = i ? t[i - 1].top: 0;
+   }
+   return d;
+  })
+
+  const box = document.getElementById('box');
+  box.innerHTML =  t.reduce( (a, b) => {
+   if(!b.child.length)
+    return a;
+    a += `<div class='title'>${b.name}</div>`
+     b.child.forEach( d => {
+      a += `<div class='menu'>${d}</div>`
+     });
+     return a;
+  }, '');
+  const menu_list = document.createElement('div');
+  menu_list.className = 'menu_list';
+  menu_list.innerHTML = menu_.reduce((a, b, c) => {
+   
+   return a += `<div class= 'menu_list_div' onclick='toTop(${c})'>${b}</div>` 
+  }, '');
+  box.appendChild(menu_list);
+  function toTop(c) {
+   box.scrollTop = t_[c].top;
+  }
+ </script>
+</body>
+</html>
